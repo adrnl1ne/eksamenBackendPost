@@ -76,43 +76,78 @@ public class ParticipantController {
         }
     }
 
-    @PostMapping("/api/post/update/{id}/participant")
+    @PutMapping("/api/post/update/{id}/participant")
     public ResponseEntity<Map<String, String>> updateParticipant(@RequestBody ParticipantModel participantModel,
-                                                                 @PathVariable() Integer id) {
+                                                                 @PathVariable Integer id) {
 
-        String msg = "Updated participant with id " + participantModel.getId() + "and type " + participantModel.getBoatType();
-        System.out.println("test");
+        String msg = "Updated participant with id " + participantModel.getId() + " and name " +
+                participantModel.getBoatName() + " and type " + participantModel.getBoatType();
+
         Optional<ParticipantModel> oldParticipant = participantService.findById(id);
-        if (oldParticipant.isPresent()) {
-            System.out.println("test1");
-            if (id == participantModel.getId())
-                System.out.println("test2");
-            participantService.save(participantModel);
-            System.out.println("test3");
-            Map<String, String> map = new HashMap<>();
-            map.put("message", msg);
-            return ResponseEntity.ok(map);
 
+        if (oldParticipant.isPresent()) {
+            ParticipantModel existingParticipant = oldParticipant.get();
+
+            if (existingParticipant.getId() == participantModel.getId()) {
+                // Retrieve the associated sailboat
+                Optional<SailboatModel> sailboatOptional = sailboatService.findById(existingParticipant.getBoatId());
+
+                if (sailboatOptional.isPresent()) {
+                    SailboatModel sailboat = sailboatOptional.get();
+
+                    // Update the sailboat data with participant data
+                    sailboat.setType(participantModel.getBoatType());
+                    sailboat.setName(participantModel.getBoatName());
+
+                    // Save the updated sailboat
+                    sailboatService.save(sailboat);
+                }
+
+                // Update the participant data
+                existingParticipant.setBoatName(participantModel.getBoatName());
+                existingParticipant.setBoatType(participantModel.getBoatType());
+                participantService.save(existingParticipant);
+
+                Map<String, String> map = new HashMap<>();
+                map.put("message", msg);
+                return ResponseEntity.ok(map);
+            } else {
+                Map<String, String> map = new HashMap<>();
+                map.put("message", "IDs do not match");
+                return ResponseEntity.badRequest().body(map);
+            }
         } else {
             Map<String, String> map = new HashMap<>();
-            map.put("message", "Something went wrong");
+            map.put("message", "Participant not found");
             return ResponseEntity.badRequest().body(map);
         }
-
-
     }
 
-    @PostMapping("/api/post/delete/{id}/participant")
-    public ResponseEntity<String> deleteParticipant(@PathVariable() Integer id) {
 
-        Optional<ParticipantModel> model = participantService.findById(id);
 
-        if (model.isPresent()) {
+    @DeleteMapping("/api/post/delete/{id}/participant")
+    public ResponseEntity<Map<String, String>> deleteParticipant(@PathVariable("id") int id) {
+        Optional<ParticipantModel> participantOptional = participantService.findById(id);
+
+        if (participantOptional.isPresent()) {
+            ParticipantModel participant = participantOptional.get();
+
+            // Set the boat reference to null, so it won't be deleted
+            participant.setBoat(null);
+
+            // Delete the participant
             participantService.deleteById(id);
-            return ResponseEntity.ok("Deleted participant with id " + id);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("message", "Participant deleted successfully");
+            return ResponseEntity.ok(map);
         } else {
-            return ResponseEntity.badRequest().body("Something went wrong");
+            Map<String, String> map = new HashMap<>();
+            map.put("message", "Participant not found");
+            return ResponseEntity.badRequest().body(map);
         }
     }
+
+
 
 }

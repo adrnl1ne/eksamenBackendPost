@@ -41,6 +41,8 @@ public class SailboatService {
         return sailboatRepository.findById(integer);
     }
 
+
+
     @PostConstruct
     public void initializeBoats() {
         if (sailboatRepository.count() == 0) {

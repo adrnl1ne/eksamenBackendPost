@@ -8,4 +8,6 @@ import java.util.List;
 public interface SailboatRepository extends JpaRepository<SailboatModel, Integer> {
 
     List<SailboatModel> findBoatModelsById(Integer sailboatId);
+
+
 }
