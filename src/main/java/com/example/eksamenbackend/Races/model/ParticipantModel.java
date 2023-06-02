@@ -13,6 +13,8 @@ public class ParticipantModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int points;
+
 
     @Column(name = "boat_id")
     private int boatId;

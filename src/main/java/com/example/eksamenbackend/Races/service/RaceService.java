@@ -5,10 +5,12 @@ import com.example.eksamenbackend.Races.model.RaceModel;
 import com.example.eksamenbackend.Races.repository.ParticipantRepository;
 import com.example.eksamenbackend.Races.repository.RaceRepository;
 import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.example.eksamenbackend.utils.RaceCreationUtils;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +18,10 @@ import java.util.Optional;
 
 @Service
 public class RaceService {
-
-    private final RaceRepository raceRepository;
-    private final ParticipantRepository participantRepository;
+    @Autowired
+    RaceRepository raceRepository;
+    @Autowired
+    ParticipantRepository participantRepository;
 
     public RaceService(RaceRepository raceRepository, ParticipantRepository participantRepository) {
         this.raceRepository = raceRepository;
@@ -41,16 +44,34 @@ public class RaceService {
     public void initializeRaces() {
         // Check if there are already races in the database
         if (raceRepository.count() == 0) {
-            // Create races for each boat type
-            createRace(SailboatModel.SailboatType.FOOT_40);
-            createRace(SailboatModel.SailboatType.FOOT_25);
-            createRace(SailboatModel.SailboatType.FOOT_25_40);
+            LocalDate startDate = LocalDate.of(2023, 5, 1);
+            LocalDate endDate = LocalDate.of(2023, 10, 1);
+            List<LocalDate> wednesdays = RaceCreationUtils.getWednesdaysBetween(startDate, endDate);
+
+            // Create races for each boat type and Wednesday
+            SailboatModel.SailboatType[] boatTypes = SailboatModel.SailboatType.values();
+            for (LocalDate wednesday : wednesdays) {
+                for (SailboatModel.SailboatType boatType : boatTypes) {
+                    createRace(boatType, wednesday);
+                }
+            }
         }
     }
-
-    private void createRace(SailboatModel.SailboatType raceType) {
+    public RaceModel createRace(SailboatModel.SailboatType raceType, LocalDate racedate) {
         RaceModel race = new RaceModel();
         race.setRaceType(raceType);
-        raceRepository.save(race);
+        race.setDate(racedate);
+        System.out.println(racedate);
+        return raceRepository.save(race);
+    }
+
+    public List<ParticipantModel> findParticipantsByBoatType(SailboatModel.SailboatType boatType) {
+        System.out.println(boatType);
+        return participantRepository.findParticipantModelsByBoatType(boatType);
+    }
+
+    public void saveParticipants(List<ParticipantModel> participants) {
+        System.out.println(participants);
+        participantRepository.saveAll(participants);
     }
 }
