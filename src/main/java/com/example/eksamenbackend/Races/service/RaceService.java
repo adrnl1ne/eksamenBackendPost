@@ -79,19 +79,6 @@ public class RaceService {
         simulateRaces(races);
     }*/
 
-    public void saveRaceParticipant(int raceId, int participantId) {
-        RaceModel race = raceRepository.findById(raceId).orElse(null);
-        ParticipantModel participant = participantRepository.findById(participantId).orElse(null);
-
-        if (race == null || participant == null) {
-            // Handle race or participant not found error
-            return;
-        }
-
-        race.getParticipants().add(participant);
-        raceRepository.save(race);
-    }
-
     public void saveParticipantsInRacesOnStartup() {
         List<RaceModel> races = raceRepository.findAll();
 
