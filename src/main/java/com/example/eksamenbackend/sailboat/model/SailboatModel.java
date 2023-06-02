@@ -15,6 +15,7 @@ public class SailboatModel {
     private int id;
     private String name;
     private int point;
+    private boolean assigned;
     private SailboatType type;
 
     // Constructors, getters, and setters

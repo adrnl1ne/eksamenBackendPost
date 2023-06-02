@@ -1,7 +1,11 @@
 package com.example.eksamenbackend.sailboat.service;
 
 import com.example.eksamenbackend.Races.model.ParticipantModel;
+import com.example.eksamenbackend.Races.model.RaceModel;
 import com.example.eksamenbackend.Races.repository.ParticipantRepository;
+import com.example.eksamenbackend.Races.repository.RaceRepository;
+import com.example.eksamenbackend.Races.service.ParticipantService;
+import com.example.eksamenbackend.Races.service.RaceService;
 import com.example.eksamenbackend.sailboat.model.SailboatModel;
 import com.example.eksamenbackend.sailboat.repository.SailboatRepository;
 import jakarta.annotation.PostConstruct;
@@ -18,6 +22,16 @@ public class SailboatService {
 
     @Autowired
     ParticipantRepository participantRepository;
+
+    @Autowired
+    RaceRepository raceRepository;
+
+    @Autowired
+    RaceService raceService;
+
+    @Autowired
+    ParticipantService participantService;
+
 
     public SailboatService(SailboatRepository sailboatRepository){
         this.sailboatRepository = sailboatRepository;
@@ -43,11 +57,12 @@ public class SailboatService {
 
 
 
-    @PostConstruct
+
     public void initializeBoats() {
         if (sailboatRepository.count() == 0) {
             generateRandomBoats();
         }
+
     }
 
     private void generateRandomBoats() {
@@ -80,5 +95,9 @@ public class SailboatService {
         int index = random.nextInt(boatTypes.size());
         return boatTypes.get(index);
     }
+
+
+
+
 
 }

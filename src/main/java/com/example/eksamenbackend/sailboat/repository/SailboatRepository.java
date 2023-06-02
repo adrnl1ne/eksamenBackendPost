@@ -10,4 +10,5 @@ public interface SailboatRepository extends JpaRepository<SailboatModel, Integer
     List<SailboatModel> findBoatModelsById(Integer sailboatId);
 
 
+    List<SailboatModel> findByAssigned(boolean b);
 }
