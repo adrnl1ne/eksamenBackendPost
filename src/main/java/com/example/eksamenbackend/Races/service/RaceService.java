@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -79,6 +80,25 @@ public class RaceService {
         simulateRaces(races);
     }*/
 
+//for later editing
+    /*
+    public void initializeOnStartup() {
+        List<ParticipantModel> participants = participantRepository.findAll();
+        List<Integer> participantPoints = participants.stream()
+                .map(ParticipantModel::getPoints).toList();
+
+        System.out.println("Participants: " + participants);
+        System.out.println("Participant points: " + participantPoints);
+
+
+        if (participantPoints.contains(null)) {
+            saveParticipantsInRacesOnStartup();
+        }
+    }*/
+
+
+
+
     public void saveParticipantsInRacesOnStartup() {
         List<RaceModel> races = raceRepository.findAll();
 
@@ -132,6 +152,7 @@ public class RaceService {
             raceRepository.save(race);
         }
     }
+
 
 
 }

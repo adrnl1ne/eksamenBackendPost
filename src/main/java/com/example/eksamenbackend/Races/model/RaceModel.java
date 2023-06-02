@@ -1,6 +1,7 @@
 package com.example.eksamenbackend.Races.model;
 
 import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,6 +30,7 @@ public class RaceModel {
             joinColumns = @JoinColumn(name = "race_id"),
             inverseJoinColumns = @JoinColumn(name = "participant_id"))
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Set<ParticipantModel> participants = new HashSet<>();
 }
 

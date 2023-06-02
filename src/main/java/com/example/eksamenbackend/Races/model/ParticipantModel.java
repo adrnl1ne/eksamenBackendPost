@@ -33,6 +33,7 @@ public class ParticipantModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "race_id")
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private RaceModel race;
 
     @Column(name = "boat_type")

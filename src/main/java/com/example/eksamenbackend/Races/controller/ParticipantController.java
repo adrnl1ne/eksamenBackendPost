@@ -21,13 +21,15 @@ public class ParticipantController {
         this.sailboatService = sailboatService;
     }
 
-    @GetMapping("/api/get/findAll/allParticipants")
+    @GetMapping("/api/get/findall/participant")
     public ResponseEntity<Set<ParticipantModel>> findAllParticipants() {
-        Set<ParticipantModel> models = new HashSet<>(participantService.findAll());
+        Set<ParticipantModel> set = new HashSet<>();
+
+        participantService.findAll().forEach(set::add);
 
         System.out.println("found all participants");
 
-        return ResponseEntity.ok(models);
+        return ResponseEntity.ok(set);
     }
 
 

@@ -33,7 +33,6 @@ public class RaceCreationStartup {
         raceCreationUtils.createAllRaces();
         sailboatService.initializeBoats();
         participantService.initializeParticipants();
-        //raceService.simulateRacesOnStartup();
         raceService.saveParticipantsInRacesOnStartup();
     }
 }

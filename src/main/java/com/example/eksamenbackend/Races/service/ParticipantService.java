@@ -7,7 +7,7 @@ import com.example.eksamenbackend.Races.repository.ParticipantRepository;
 import com.example.eksamenbackend.Races.repository.RaceRepository;
 import com.example.eksamenbackend.sailboat.model.SailboatModel;
 import com.example.eksamenbackend.sailboat.repository.SailboatRepository;
-import jakarta.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

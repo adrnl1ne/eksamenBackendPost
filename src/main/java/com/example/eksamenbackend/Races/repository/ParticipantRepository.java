@@ -17,4 +17,5 @@ public interface ParticipantRepository extends JpaRepository<ParticipantModel, I
     Optional<ParticipantModel> findByBoatId(Integer id);
 
     List<ParticipantModel> findParticipantModelsByBoatType(SailboatModel.SailboatType boatType);
+
 }

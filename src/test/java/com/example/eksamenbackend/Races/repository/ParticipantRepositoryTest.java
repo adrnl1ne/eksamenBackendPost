@@ -25,9 +25,11 @@ class ParticipantRepositoryTest {
     RaceRepository raceRepository;
 
 
+    //Because we create 10 participants in a simulation method,
+    // we expect to find 10 participants in the database
     @Test
     void findAllParticipants() {
-        SailboatModel sailboatModel = new SailboatModel();
+        /*SailboatModel sailboatModel = new SailboatModel();
         sailboatModel.setName("Test");
         sailboatModel.setType(SailboatModel.SailboatType.FOOT_40);
         sailboatRepository.save(sailboatModel);
@@ -40,9 +42,10 @@ class ParticipantRepositoryTest {
         participantModel.setRace(raceModel);
         participantRepository.save(participantModel);
 
+         */
         List<ParticipantModel> participantModels = participantRepository.findAll();
 
-        assertEquals(1, participantModels.size());
+        assertEquals(10, participantModels.size());
 
     }
 
