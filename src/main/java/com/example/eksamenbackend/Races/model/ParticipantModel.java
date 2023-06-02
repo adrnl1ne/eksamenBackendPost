@@ -15,6 +15,8 @@ public class ParticipantModel {
 
     private int points;
 
+    private boolean notCompleted;
+    private boolean notStarted;
 
     @Column(name = "boat_id")
     private int boatId;
@@ -36,6 +38,7 @@ public class ParticipantModel {
     @Column(name = "boat_type")
     @Enumerated(EnumType.STRING)
     private SailboatModel.SailboatType boatType;
+
 }
 
 

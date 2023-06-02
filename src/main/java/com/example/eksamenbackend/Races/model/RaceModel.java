@@ -29,7 +29,7 @@ public class RaceModel {
             joinColumns = @JoinColumn(name = "race_id"),
             inverseJoinColumns = @JoinColumn(name = "participant_id"))
     @EqualsAndHashCode.Exclude
-    private Set<ParticipantModel> participantModels = new HashSet<>();
+    private Set<ParticipantModel> participants = new HashSet<>();
 }
 
 

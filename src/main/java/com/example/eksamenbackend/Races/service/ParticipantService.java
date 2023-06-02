@@ -68,7 +68,7 @@ public class ParticipantService {
                 SailboatModel.SailboatType.FOOT_25_40
         );
 
-        List<RaceModel> races = raceRepository.findAll(); // Fetch all races from the database
+        List<RaceModel> races = raceRepository.findAll();
 
         for (int i = 0; i < 10; i++) {
             SailboatModel sailboat = getRandomAvailableBoat(random);
@@ -80,13 +80,17 @@ public class ParticipantService {
                     participant.setBoatName(sailboat.getName());
                     participant.setBoatType(sailboat.getType());
                     participant.setRace(matchingRace);
-                    save(participant); // Save the participant using the ParticipantService
-                    sailboat.setAssigned(true); // Mark the boat as assigned
-                    sailboatRepository.save(sailboat); // Update the sailboat in the database
+
+                    save(participant);
+
+                    sailboat.setAssigned(true);
+                    sailboatRepository.save(sailboat);
                 }
             }
         }
     }
+
+
 
     private RaceModel findMatchingRace(SailboatModel.SailboatType sailboatType, List<RaceModel> races) {
         for (RaceModel race : races) {

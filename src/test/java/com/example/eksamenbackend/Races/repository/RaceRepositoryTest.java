@@ -4,10 +4,6 @@ import com.example.eksamenbackend.Races.model.ParticipantModel;
 import com.example.eksamenbackend.Races.model.RaceModel;
 import com.example.eksamenbackend.sailboat.model.SailboatModel;
 import com.example.eksamenbackend.sailboat.repository.SailboatRepository;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.EqualsAndHashCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -47,7 +43,7 @@ class RaceRepositoryTest {
 
             participant.setRace(raceModel);
 
-            raceModel.getParticipantModels().add(participant);
+            raceModel.getParticipants().add(participant);
 
             participantRepository.save(participant);
             raceRepository.save(raceModel);
@@ -76,7 +72,7 @@ class RaceRepositoryTest {
         participantModel.setRace(raceModel);
         participantRepository.save(participantModel);
 
-        raceModel.getParticipantModels().add(participantModel);
+        raceModel.getParticipants().add(participantModel);
         raceRepository.save(raceModel);
 
         List<ParticipantModel> participantModels =
