@@ -1,6 +1,6 @@
-package com.example.eksamenbackend.sailboat.repository;
+package com.example.eksamenbackend.repository;
 
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.example.eksamenbackend.model.SailboatModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

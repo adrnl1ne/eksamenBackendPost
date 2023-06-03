@@ -1,10 +1,10 @@
-package com.example.eksamenbackend.sailboat.controller;
+package com.example.eksamenbackend.controller;
 
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.service.ParticipantService;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
-import com.example.eksamenbackend.sailboat.service.SailboatService;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.service.ParticipantService;
+import com.example.eksamenbackend.model.SailboatModel;
+import com.example.eksamenbackend.service.SailboatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

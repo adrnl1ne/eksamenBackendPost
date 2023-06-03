@@ -1,14 +1,9 @@
-package com.example.eksamenbackend.sailboat.service;
+package com.example.eksamenbackend.service;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.model.RaceModel;
-import com.example.eksamenbackend.Races.repository.ParticipantRepository;
-import com.example.eksamenbackend.Races.repository.RaceRepository;
-import com.example.eksamenbackend.Races.service.ParticipantService;
-import com.example.eksamenbackend.Races.service.RaceService;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
-import com.example.eksamenbackend.sailboat.repository.SailboatRepository;
-import jakarta.annotation.PostConstruct;
+import com.example.eksamenbackend.repository.ParticipantRepository;
+import com.example.eksamenbackend.repository.RaceRepository;
+import com.example.eksamenbackend.model.SailboatModel;
+import com.example.eksamenbackend.repository.SailboatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

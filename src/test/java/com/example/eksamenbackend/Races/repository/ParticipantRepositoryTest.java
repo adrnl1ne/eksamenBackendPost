@@ -1,9 +1,11 @@
 package com.example.eksamenbackend.Races.repository;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.model.RaceModel;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
-import com.example.eksamenbackend.sailboat.repository.SailboatRepository;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.model.RaceModel;
+import com.example.eksamenbackend.repository.ParticipantRepository;
+import com.example.eksamenbackend.repository.RaceRepository;
+import com.example.eksamenbackend.model.SailboatModel;
+import com.example.eksamenbackend.repository.SailboatRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

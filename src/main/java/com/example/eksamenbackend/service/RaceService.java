@@ -1,10 +1,10 @@
-package com.example.eksamenbackend.Races.service;
+package com.example.eksamenbackend.service;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.model.RaceModel;
-import com.example.eksamenbackend.Races.repository.ParticipantRepository;
-import com.example.eksamenbackend.Races.repository.RaceRepository;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.model.RaceModel;
+import com.example.eksamenbackend.repository.ParticipantRepository;
+import com.example.eksamenbackend.repository.RaceRepository;
+import com.example.eksamenbackend.model.SailboatModel;
 import com.example.eksamenbackend.utils.RaceCreationUtils;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -74,16 +73,13 @@ public class RaceService {
         participantRepository.saveAll(participants);
     }
 
-    /*public void simulateRacesOnStartup() {
-        System.out.println("test");
-        List<RaceModel> races = raceRepository.findAll();
-        simulateRaces(races);
-    }*/
 
 //for later editing
-    /*
-    public void initializeOnStartup() {
+
+    /*public void initializeOnStartup() {
+        System.out.println("test");
         List<ParticipantModel> participants = participantRepository.findAll();
+        System.out.println("test2");
         List<Integer> participantPoints = participants.stream()
                 .map(ParticipantModel::getPoints).toList();
 
@@ -122,15 +118,15 @@ public class RaceService {
                 // Assign special conditions
                 if (placement <= 2) {
                     // First and second place cannot have not completed or not started
-                    participant.setNotCompleted(false);
-                    participant.setNotStarted(false);
+                    participant.setCompleted(true);
+                    participant.setStarted(true);
                 } else {
                     // Randomly assign special conditions
                     boolean notCompleted = random.nextBoolean();
                     boolean notStarted = random.nextBoolean();
 
-                    participant.setNotCompleted(notCompleted);
-                    participant.setNotStarted(notStarted);
+                    participant.setCompleted(notCompleted);
+                    participant.setStarted(notStarted);
 
                     if (notCompleted) {
                         // Set points to the amount of starting boats + 1
@@ -146,10 +142,6 @@ public class RaceService {
 
                 placement++;
             }
-
-            // Save the updated race with participants
-            race.setParticipants(new HashSet<>(participants));
-            raceRepository.save(race);
         }
     }
 

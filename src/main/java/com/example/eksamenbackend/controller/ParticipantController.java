@@ -1,9 +1,9 @@
-package com.example.eksamenbackend.Races.controller;
+package com.example.eksamenbackend.controller;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.service.ParticipantService;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
-import com.example.eksamenbackend.sailboat.service.SailboatService;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.service.ParticipantService;
+import com.example.eksamenbackend.model.SailboatModel;
+import com.example.eksamenbackend.service.SailboatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +21,12 @@ public class ParticipantController {
         this.sailboatService = sailboatService;
     }
 
-    @GetMapping("/api/get/findall/participant")
-    public ResponseEntity<List<ParticipantModel>> findAllParticipants() {
+    @GetMapping("/api/get/findAll/participant")
+    public ResponseEntity<Set<ParticipantModel>> getAllParticipants() {
 
-        List<ParticipantModel> set = new ArrayList<>(participantService.findAll());
+        Set<ParticipantModel> set = new HashSet<>(participantService.findAll());
+
+        System.out.println(set);
 
         System.out.println("found all participants");
 

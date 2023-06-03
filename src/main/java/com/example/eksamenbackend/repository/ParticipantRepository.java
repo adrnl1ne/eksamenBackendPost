@@ -1,7 +1,7 @@
-package com.example.eksamenbackend.Races.repository;
+package com.example.eksamenbackend.repository;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.model.SailboatModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,8 @@
-package com.example.eksamenbackend.Races.controller;
+package com.example.eksamenbackend.controller;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.model.RaceModel;
-import com.example.eksamenbackend.Races.service.RaceService;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.model.RaceModel;
+import com.example.eksamenbackend.service.RaceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

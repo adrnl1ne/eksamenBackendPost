@@ -1,9 +1,8 @@
 package com.example.eksamenbackend.utils;
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.model.RaceModel;
-import com.example.eksamenbackend.Races.service.RaceService;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.service.RaceService;
+import com.example.eksamenbackend.model.SailboatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

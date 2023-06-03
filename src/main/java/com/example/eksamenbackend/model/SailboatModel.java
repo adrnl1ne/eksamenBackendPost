@@ -1,4 +1,4 @@
-package com.example.eksamenbackend.sailboat.model;
+package com.example.eksamenbackend.model;
 
 
 import jakarta.persistence.Entity;
@@ -17,9 +17,6 @@ public class SailboatModel {
     private int point;
     private boolean assigned;
     private SailboatType type;
-
-    // Constructors, getters, and setters
-    // ...
 
     public enum SailboatType {
         FOOT_40("40foot"),

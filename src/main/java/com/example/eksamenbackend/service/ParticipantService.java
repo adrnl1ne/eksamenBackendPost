@@ -1,12 +1,12 @@
-package com.example.eksamenbackend.Races.service;
+package com.example.eksamenbackend.service;
 
 
-import com.example.eksamenbackend.Races.model.ParticipantModel;
-import com.example.eksamenbackend.Races.model.RaceModel;
-import com.example.eksamenbackend.Races.repository.ParticipantRepository;
-import com.example.eksamenbackend.Races.repository.RaceRepository;
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
-import com.example.eksamenbackend.sailboat.repository.SailboatRepository;
+import com.example.eksamenbackend.model.ParticipantModel;
+import com.example.eksamenbackend.model.RaceModel;
+import com.example.eksamenbackend.repository.ParticipantRepository;
+import com.example.eksamenbackend.repository.RaceRepository;
+import com.example.eksamenbackend.model.SailboatModel;
+import com.example.eksamenbackend.repository.SailboatRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,21 +16,26 @@ import java.util.*;
 @Service
 public class ParticipantService {
 
-    @Autowired
-    ParticipantRepository participantRepository;
 
-    @Autowired
-    SailboatRepository sailboatRepository;
+    private final ParticipantRepository participantRepository;
 
-    @Autowired
-    RaceRepository raceRepository;
 
-    public ParticipantService(ParticipantRepository participantRepository){
+    private final SailboatRepository sailboatRepository;
+
+
+    private final RaceRepository raceRepository;
+
+   public ParticipantService(ParticipantRepository participantRepository, SailboatRepository sailboatRepository,
+                             RaceRepository raceRepository) {
         this.participantRepository = participantRepository;
-    }
+        this.sailboatRepository = sailboatRepository;
+        this.raceRepository = raceRepository;
+   }
+
 
     public Set<ParticipantModel> findAll() {
-        return new HashSet<>(participantRepository.findAll());
+        Set<ParticipantModel> set = new HashSet<>(participantRepository.findAll());
+        return set;
     }
 
     public List<SailboatModel> findBoatsByParticipantId(Integer id) {
@@ -89,7 +94,6 @@ public class ParticipantService {
             }
         }
     }
-
 
 
     private RaceModel findMatchingRace(SailboatModel.SailboatType sailboatType, List<RaceModel> races) {

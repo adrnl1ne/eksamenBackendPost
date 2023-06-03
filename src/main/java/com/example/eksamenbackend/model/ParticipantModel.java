@@ -1,13 +1,14 @@
-package com.example.eksamenbackend.Races.model;
+package com.example.eksamenbackend.model;
 
-import com.example.eksamenbackend.sailboat.model.SailboatModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
+@JsonIgnoreProperties("boat")
 public class ParticipantModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +16,8 @@ public class ParticipantModel {
 
     private int points;
 
-    private boolean notCompleted;
-    private boolean notStarted;
+    private boolean Completed;
+    private boolean Started;
 
     @Column(name = "boat_id")
     private int boatId;
@@ -24,13 +25,12 @@ public class ParticipantModel {
     @Column(name = "boat_name")
     private String boatName;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "boat_id", insertable = false, updatable = false)
     @EqualsAndHashCode.Exclude
-    @JsonIgnore
     private SailboatModel boat;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "race_id")
     @EqualsAndHashCode.Exclude
     @JsonIgnore

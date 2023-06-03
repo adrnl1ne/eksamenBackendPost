@@ -1,12 +1,10 @@
 package com.example.eksamenbackend.startup;
 
-import com.example.eksamenbackend.Races.service.ParticipantService;
-import com.example.eksamenbackend.Races.service.RaceService;
-import com.example.eksamenbackend.sailboat.service.SailboatService;
+import com.example.eksamenbackend.service.ParticipantService;
+import com.example.eksamenbackend.service.RaceService;
+import com.example.eksamenbackend.service.SailboatService;
 import com.example.eksamenbackend.utils.RaceCreationUtils;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
@@ -14,18 +12,23 @@ import org.springframework.stereotype.Component;
 public class RaceCreationStartup {
     private final RaceCreationUtils raceCreationUtils;
 
-    @Autowired
+    private final
     SailboatService sailboatService;
 
-    @Autowired
+    private final
     ParticipantService participantService;
 
-    @Autowired
+
+    private final
     RaceService raceService;
 
 
-    public RaceCreationStartup(RaceCreationUtils raceCreationUtils) {
+    public RaceCreationStartup(RaceCreationUtils raceCreationUtils, RaceService raceService,
+                               SailboatService sailboatService, ParticipantService participantService) {
         this.raceCreationUtils = raceCreationUtils;
+        this.raceService = raceService;
+        this.sailboatService = sailboatService;
+        this.participantService = participantService;
     }
 
     @PostConstruct
