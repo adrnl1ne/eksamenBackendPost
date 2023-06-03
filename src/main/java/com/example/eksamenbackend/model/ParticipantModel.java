@@ -17,6 +17,7 @@ public class ParticipantModel {
     private int points;
 
     private boolean Completed;
+
     private boolean Started;
 
     @Column(name = "boat_id")

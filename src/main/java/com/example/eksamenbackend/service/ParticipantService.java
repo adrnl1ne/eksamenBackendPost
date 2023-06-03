@@ -16,14 +16,14 @@ import java.util.*;
 @Service
 public class ParticipantService {
 
+    @Autowired
+    ParticipantRepository participantRepository;
 
-    private final ParticipantRepository participantRepository;
+    @Autowired
+    SailboatRepository sailboatRepository;
 
-
-    private final SailboatRepository sailboatRepository;
-
-
-    private final RaceRepository raceRepository;
+    @Autowired
+    RaceRepository raceRepository;
 
    public ParticipantService(ParticipantRepository participantRepository, SailboatRepository sailboatRepository,
                              RaceRepository raceRepository) {

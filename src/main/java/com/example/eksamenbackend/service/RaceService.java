@@ -16,10 +16,11 @@ import java.util.*;
 
 @Service
 public class RaceService {
-    @Autowired
-    RaceRepository raceRepository;
-    @Autowired
-    ParticipantRepository participantRepository;
+
+
+    private final RaceRepository raceRepository;
+
+    private final ParticipantRepository participantRepository;
 
     public RaceService(RaceRepository raceRepository, ParticipantRepository participantRepository) {
         this.raceRepository = raceRepository;
@@ -55,6 +56,7 @@ public class RaceService {
             }
         }
     }
+
     public RaceModel createRace(SailboatModel.SailboatType raceType, LocalDate racedate) {
         RaceModel race = new RaceModel();
         race.setRaceType(raceType);
@@ -72,27 +74,6 @@ public class RaceService {
         System.out.println(participants);
         participantRepository.saveAll(participants);
     }
-
-
-//for later editing
-
-    /*public void initializeOnStartup() {
-        System.out.println("test");
-        List<ParticipantModel> participants = participantRepository.findAll();
-        System.out.println("test2");
-        List<Integer> participantPoints = participants.stream()
-                .map(ParticipantModel::getPoints).toList();
-
-        System.out.println("Participants: " + participants);
-        System.out.println("Participant points: " + participantPoints);
-
-
-        if (participantPoints.contains(null)) {
-            saveParticipantsInRacesOnStartup();
-        }
-    }*/
-
-
 
 
     public void saveParticipantsInRacesOnStartup() {
@@ -144,7 +125,6 @@ public class RaceService {
             }
         }
     }
-
 
 
 }
