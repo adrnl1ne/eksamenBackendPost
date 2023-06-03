@@ -22,10 +22,9 @@ public class ParticipantController {
     }
 
     @GetMapping("/api/get/findall/participant")
-    public ResponseEntity<Set<ParticipantModel>> findAllParticipants() {
-        Set<ParticipantModel> set = new HashSet<>();
+    public ResponseEntity<List<ParticipantModel>> findAllParticipants() {
 
-        participantService.findAll().forEach(set::add);
+        List<ParticipantModel> set = new ArrayList<>(participantService.findAll());
 
         System.out.println("found all participants");
 
