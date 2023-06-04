@@ -22,6 +22,7 @@ public class RaceController {
         this.raceService = raceService;
     }
 
+    // This method is used to return a list of participants connected to a certain race id
     @GetMapping("/api/get/allParticipants/{id}/race")
     public ResponseEntity<List<ParticipantModel>> allParticipantsFromRace(@PathVariable Integer id) {
 

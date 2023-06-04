@@ -46,7 +46,7 @@ class ParticipantRepositoryTest {
 
          */
         List<ParticipantModel> participantModels = participantRepository.findAll();
-
+        //because we create 10 participants in a simulation method, we expect to find 10 participants in the database
         assertEquals(10, participantModels.size());
 
     }
@@ -131,7 +131,9 @@ class ParticipantRepositoryTest {
 
         participantRepository.deleteById(participantModel.getId());
         List<ParticipantModel> participantModels = participantRepository.findAll();
-        assertEquals(0, participantModels.size());
+        //Becasue we create 10 random participants, we expect to find 10 participants in the database
+        //after creating one and deleting one
+        assertEquals(10, participantModels.size());
     }
 
     @Test

@@ -5,21 +5,22 @@ import com.example.eksamenbackend.service.RaceService;
 import com.example.eksamenbackend.service.SailboatService;
 import com.example.eksamenbackend.utils.RaceCreationUtils;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class RaceCreationStartup {
-    private final RaceCreationUtils raceCreationUtils;
 
-    private final
+    @Autowired
+    RaceCreationUtils raceCreationUtils;
+    @Autowired
     SailboatService sailboatService;
 
-    private final
+    @Autowired
     ParticipantService participantService;
 
-
-    private final
+    @Autowired
     RaceService raceService;
 
 
@@ -31,12 +32,14 @@ public class RaceCreationStartup {
         this.participantService = participantService;
     }
 
+    //As the backend is run, the postconstruct will run the following methods
+    //after the application context has been loaded
     @PostConstruct
     public void initializeRaces() {
         raceCreationUtils.createAllRaces();
         sailboatService.initializeBoats();
         participantService.initializeParticipants();
-        raceService.saveParticipantsInRacesOnStartup();
+        raceService.saveRacesInParticipant();
     }
 }
 

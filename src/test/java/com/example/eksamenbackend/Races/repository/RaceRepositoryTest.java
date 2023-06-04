@@ -29,35 +29,6 @@ class RaceRepositoryTest {
 
 
     @Test
-    void addParticipantToRace() {
-        // Creating a new participant
-        ParticipantModel participant = new ParticipantModel();
-
-        //Properties
-        participant.setBoatId(1);
-
-        // Retrieve by ID
-        Optional<RaceModel> raceOptional = raceRepository.findById(1);
-
-
-        if (raceOptional.isPresent()) {
-            RaceModel raceModel = raceOptional.get();
-
-            participant.setRace(raceModel);
-
-            raceModel.getParticipants().add(participant);
-
-            participantRepository.save(participant);
-            raceRepository.save(raceModel);
-        } else {
-            return;
-        }
-    }
-
-
-
-
-    @Test
     void allParticipantsFromRace() {
         RaceModel raceModel = new RaceModel();
         raceModel.setRaceType(SailboatModel.SailboatType.FOOT_40);
@@ -73,9 +44,6 @@ class RaceRepositoryTest {
         participantModel.setBoatId(sailboatModel.getId());
         participantModel.setRace(raceModel);
         participantRepository.save(participantModel);
-
-        raceModel.getParticipants().add(participantModel);
-        raceRepository.save(raceModel);
 
         List<ParticipantModel> participantModels =
                 participantRepository.findParticipantModelsByRaceId(raceModel.getId());
@@ -99,7 +67,7 @@ class RaceRepositoryTest {
 
         List<RaceModel> raceModels = raceRepository.findAll();
 
-        assertEquals(3, raceModels.size());
+        assertEquals(135, raceModels.size());
     }
 
 }

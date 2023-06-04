@@ -52,7 +52,7 @@ public class SailboatService {
 
 
 
-
+    // This method is used to check if the database is empty, and if it is, it will generate 10 random boats
     public void initializeBoats() {
         if (sailboatRepository.count() == 0) {
             generateRandomBoats();
@@ -60,6 +60,7 @@ public class SailboatService {
 
     }
 
+    // This method is used to generate 10 random boats, with random names and types
     private void generateRandomBoats() {
         Random random = new Random();
         List<SailboatModel.SailboatType> boatTypes = Arrays.asList(
@@ -76,6 +77,7 @@ public class SailboatService {
         }
     }
 
+    // This method is used to generate a random name for the boats
     private String generateRandomName() {
         Random random = new Random();
         StringBuilder name = new StringBuilder();
@@ -86,6 +88,7 @@ public class SailboatService {
         return name.toString();
     }
 
+    // This method is used to get a random boat type from the list of boat types
     private SailboatModel.SailboatType getRandomBoatType(List<SailboatModel.SailboatType> boatTypes, Random random) {
         int index = random.nextInt(boatTypes.size());
         return boatTypes.get(index);

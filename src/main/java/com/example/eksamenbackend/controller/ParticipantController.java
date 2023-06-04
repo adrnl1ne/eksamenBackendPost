@@ -21,6 +21,7 @@ public class ParticipantController {
         this.sailboatService = sailboatService;
     }
 
+    // This method is used to get all participants
     @GetMapping("/api/get/findAll/participant")
     public ResponseEntity<Set<ParticipantModel>> getAllParticipants() {
 
@@ -33,7 +34,7 @@ public class ParticipantController {
         return ResponseEntity.ok(set);
     }
 
-
+    // This method is used to get all boats from a specific participant
     @GetMapping("/api/get/allBoats/{id}/participant")
     public ResponseEntity<List<SailboatModel>> allBoatsFromParticipant(@PathVariable Integer id) {
         Optional<SailboatModel> sailboatModelOptional = sailboatService.findById(id);
@@ -52,6 +53,7 @@ public class ParticipantController {
         return ResponseEntity.ok(null);
     }
 
+    // This method is used to get a specific participant by the boats id
     @GetMapping("/api/get/findByBoatId/{id}/participant")
     public ResponseEntity<ParticipantModel> findByBoatId(@PathVariable Integer id) {
         Optional<ParticipantModel> participantModelOptional = participantService.findByBoatId(id);
@@ -66,6 +68,8 @@ public class ParticipantController {
         return ResponseEntity.ok(null);
     }
 
+
+    // This method creates a new participant
     @PostMapping("/api/post/create/participant")
     public ResponseEntity<String> createParticipant(@RequestBody ParticipantModel participantModel) {
         participantService.save(participantModel);
@@ -79,6 +83,7 @@ public class ParticipantController {
         }
     }
 
+    // This method updates a participant
     @PutMapping("/api/post/update/{id}/participant")
     public ResponseEntity<Map<String, String>> updateParticipant(@RequestBody ParticipantModel participantModel,
                                                                  @PathVariable Integer id) {
@@ -127,7 +132,7 @@ public class ParticipantController {
     }
 
 
-
+    // This method deletes a participant
     @DeleteMapping("/api/post/delete/{id}/participant")
     public ResponseEntity<Map<String, String>> deleteParticipant(@PathVariable("id") int id) {
         Optional<ParticipantModel> participantOptional = participantService.findById(id);

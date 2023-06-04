@@ -22,6 +22,8 @@ public class SailboatController {
         this.participantService = participantService;
     }
 
+
+    // This method is used to find all sailboats in the database.
     @GetMapping("/api/get/findAll/sailboats")
     public ResponseEntity<Set<SailboatModel>> findAllSailboats() {
         Set<SailboatModel> models = new HashSet<>(sailboatService.findAll());
@@ -31,6 +33,7 @@ public class SailboatController {
         return ResponseEntity.ok(models);
     }
 
+    // This method is used to find a sailboat by its id.
     @PostMapping("/api/post/create/sailboat")
     public ResponseEntity<String> createSailboat(@RequestBody SailboatModel sailboatModel) {
         sailboatService.save(sailboatModel);
@@ -44,6 +47,7 @@ public class SailboatController {
         }
     }
 
+    // This method is used to update a sailboat by its id.
     @PostMapping("/api/post/update/{id}/sailboat")
     public ResponseEntity<Map<String, String>> updateSailboat(@RequestBody SailboatModel sailboatModel, @PathVariable() Integer id) {
 
@@ -76,6 +80,7 @@ public class SailboatController {
 
 
 
+    // This method is used to delete a sailboat by its id.
     @PostMapping("/api/post/delete/{id}/sailboat")
     public ResponseEntity<String> deleteSailboat(@PathVariable() Integer id) {
 

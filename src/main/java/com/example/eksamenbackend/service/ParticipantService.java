@@ -59,12 +59,14 @@ public class ParticipantService {
     }
 
 
+    // This method checks if there are any participants in the database. If not, it generates 10 random participants.
     public void initializeParticipants() {
         if (participantRepository.count() == 0) {
             generateRandomParticipants();
         }
     }
 
+    // This method generates 10 random participants, and is called in the method above.
     private void generateRandomParticipants() {
         Random random = new Random();
         List<SailboatModel.SailboatType> boatTypes = Arrays.asList(
@@ -95,7 +97,7 @@ public class ParticipantService {
         }
     }
 
-
+    // This method find a race that has the same type as the sailboat the participant contains.
     private RaceModel findMatchingRace(SailboatModel.SailboatType sailboatType, List<RaceModel> races) {
         for (RaceModel race : races) {
             if (race.getRaceType() == sailboatType) {
@@ -106,6 +108,8 @@ public class ParticipantService {
     }
 
 
+    // This method finds a random available boat and is used to generate the participant.
+    // So that there won't be any participants with the same boat.
     private SailboatModel getRandomAvailableBoat(Random random) {
         List<SailboatModel> availableBoats = sailboatRepository.findByAssigned(false);
         if (!availableBoats.isEmpty()) {

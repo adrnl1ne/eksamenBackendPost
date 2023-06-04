@@ -41,8 +41,8 @@ class SailboatRepositoryTest {
         sailboatRepository.save(sailboatModel2);
 
         List<SailboatModel> sailboatModels = sailboatRepository.findAll();
-
-        assertEquals(3, sailboatModels.size());
+        //we have created 10 in with a simulation, so we expect 13 after the 3 we created here
+        assertEquals(13, sailboatModels.size());
     }
 
     @Test
@@ -81,8 +81,8 @@ class SailboatRepositoryTest {
 
         sailboatRepository.deleteById(sailboatModel.getId());
         List<SailboatModel> sailboatModels = sailboatRepository.findAll();
-
-        assertEquals(0, sailboatModels.size());
+        //we have created 10 in with a simulation, so we expect 10 after creating and deleting the 1 here
+        assertEquals(10, sailboatModels.size());
     }
 
 

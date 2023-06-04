@@ -21,11 +21,11 @@ public class RaceCreationUtils {
         this.raceService = raceService;
     }
 
-
+    //finds all wednesdays between two dates
     public static List<LocalDate> getWednesdaysBetween(LocalDate startDate, LocalDate endDate) {
         List<LocalDate> wednesdays = new ArrayList<>();
         LocalDate current = startDate;
-
+        // Loop through all days between start and end date
         while (current.isBefore(endDate) || current.isEqual(endDate)) {
             if (current.getDayOfWeek() == DayOfWeek.WEDNESDAY) {
                 wednesdays.add(current);
@@ -36,6 +36,7 @@ public class RaceCreationUtils {
         return wednesdays;
     }
 
+    //creates all the races between two dates
     public void createAllRaces() {
         LocalDate startDate = LocalDate.of(2023, 5, 1);
         LocalDate endDate = LocalDate.of(2023, 10, 1);
@@ -47,6 +48,8 @@ public class RaceCreationUtils {
         }
     }
 
+    //creates races for all boat types on a given wednesday, and assigns points to participants
+    //this happens for all wednesdays between two dates
     public void createRacesForWednesday(LocalDate localDate) {
         SailboatModel.SailboatType[] boatTypes = SailboatModel.SailboatType.values();
 
@@ -67,8 +70,6 @@ public class RaceCreationUtils {
             raceService.saveParticipants(participants);
         }
     }
-
-
 
 
 }

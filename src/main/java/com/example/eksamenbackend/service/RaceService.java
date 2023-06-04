@@ -7,7 +7,6 @@ import com.example.eksamenbackend.repository.RaceRepository;
 import com.example.eksamenbackend.model.SailboatModel;
 import com.example.eksamenbackend.utils.RaceCreationUtils;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -57,6 +56,7 @@ public class RaceService {
         }
     }
 
+    // This method creates a race with a given boat type and date
     public RaceModel createRace(SailboatModel.SailboatType raceType, LocalDate racedate) {
         RaceModel race = new RaceModel();
         race.setRaceType(raceType);
@@ -65,18 +65,21 @@ public class RaceService {
         return raceRepository.save(race);
     }
 
+    // This method finds all participants for a given boat type
     public List<ParticipantModel> findParticipantsByBoatType(SailboatModel.SailboatType boatType) {
         System.out.println(boatType);
         return participantRepository.findParticipantModelsByBoatType(boatType);
     }
 
+    // This method saves a list of participants
     public void saveParticipants(List<ParticipantModel> participants) {
         System.out.println(participants);
         participantRepository.saveAll(participants);
     }
 
 
-    public void saveParticipantsInRacesOnStartup() {
+    // This method  generates random results for all participants in a type of race
+    public void saveRacesInParticipant() {
         List<RaceModel> races = raceRepository.findAll();
 
         Random random = new Random();
