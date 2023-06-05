@@ -14,7 +14,6 @@ public class SailboatModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int point;
     private boolean assigned;
     private SailboatType type;
 

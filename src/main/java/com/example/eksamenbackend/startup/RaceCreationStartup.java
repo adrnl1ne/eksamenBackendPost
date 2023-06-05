@@ -41,5 +41,7 @@ public class RaceCreationStartup {
         participantService.initializeParticipants();
         raceService.saveRacesInParticipant();
     }
+
+
 }
 
