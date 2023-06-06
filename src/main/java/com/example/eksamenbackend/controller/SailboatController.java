@@ -49,7 +49,8 @@ public class SailboatController {
 
     // This method is used to update a sailboat by its id.
     @PostMapping("/api/post/update/{id}/sailboat")
-    public ResponseEntity<Map<String, String>> updateSailboat(@RequestBody SailboatModel sailboatModel, @PathVariable() Integer id) {
+    public ResponseEntity<Map<String, String>> updateSailboat(@RequestBody SailboatModel sailboatModel,
+                                                              @PathVariable() Integer id) {
 
         String msg = "Updated sailboat with name " + sailboatModel.getName() + " and type " + sailboatModel.getType();
 
@@ -57,7 +58,7 @@ public class SailboatController {
         if (oldSailboat.isPresent() && id == sailboatModel.getId()) {
             SailboatModel updatedSailboat = sailboatService.save(sailboatModel);
 
-            // Retrieve the participant associated with the updated sailboat
+            // Retrieve and update the participant associated with the updated sailboat
             Optional<ParticipantModel> participantOptional = participantService.findByBoatId(updatedSailboat.getId());
             if (participantOptional.isPresent()) {
                 ParticipantModel participant = participantOptional.get();
@@ -76,8 +77,6 @@ public class SailboatController {
             return ResponseEntity.badRequest().body(map);
         }
     }
-
-
 
 
     // This method is used to delete a sailboat by its id.

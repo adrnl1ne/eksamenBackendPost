@@ -25,17 +25,16 @@ public class ParticipantService {
     @Autowired
     RaceRepository raceRepository;
 
-   public ParticipantService(ParticipantRepository participantRepository, SailboatRepository sailboatRepository,
-                             RaceRepository raceRepository) {
+    public ParticipantService(ParticipantRepository participantRepository, SailboatRepository sailboatRepository,
+                              RaceRepository raceRepository) {
         this.participantRepository = participantRepository;
         this.sailboatRepository = sailboatRepository;
         this.raceRepository = raceRepository;
-   }
+    }
 
 
     public Set<ParticipantModel> findAll() {
-        Set<ParticipantModel> set = new HashSet<>(participantRepository.findAll());
-        return set;
+        return new HashSet<>(participantRepository.findAll());
     }
 
     public List<SailboatModel> findBoatsByParticipantId(Integer id) {
@@ -69,11 +68,6 @@ public class ParticipantService {
     // This method generates 10 random participants, and is called in the method above.
     private void generateRandomParticipants() {
         Random random = new Random();
-        List<SailboatModel.SailboatType> boatTypes = Arrays.asList(
-                SailboatModel.SailboatType.FOOT_40,
-                SailboatModel.SailboatType.FOOT_25,
-                SailboatModel.SailboatType.FOOT_25_40
-        );
 
         List<RaceModel> races = raceRepository.findAll();
 

@@ -57,12 +57,12 @@ public class RaceService {
     }
 
     // This method creates a race with a given boat type and date
-    public RaceModel createRace(SailboatModel.SailboatType raceType, LocalDate racedate) {
+    public void createRace(SailboatModel.SailboatType raceType, LocalDate racedate) {
         RaceModel race = new RaceModel();
         race.setRaceType(raceType);
         race.setDate(racedate);
         System.out.println(racedate);
-        return raceRepository.save(race);
+        raceRepository.save(race);
     }
 
     // This method finds all participants for a given boat type

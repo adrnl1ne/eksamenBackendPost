@@ -32,7 +32,7 @@ public class RaceCreationStartup {
         this.participantService = participantService;
     }
 
-    //As the backend is run, the postconstruct will run the following methods
+    //As the backend is run, the post-construct will run the following methods
     //after the application context has been loaded
     @PostConstruct
     public void initializeRaces() {
